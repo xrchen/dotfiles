@@ -52,12 +52,6 @@
   ;; js2-mode
   (autoload 'js2-mode "js2-mode" nil t)
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-
-  ;; less-css-mode
-  ;(autoload 'less-css-mode "less-css-mode" nil t)
-  ;(add-to-list 'auto-mode-alist '("\\.less$" . less-css-mode))
-  ;(setq less-css-output-directory "/tmp/")
-  ;(setq less-css-lessc-command "/home/xrchen/lianke/puff/bin/lessc")
   )
 
 ;; load color theme
