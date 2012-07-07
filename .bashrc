@@ -16,6 +16,8 @@ fi
 
 # Put your fun stuff here.
 
+PS1='\[\033[1m\]\h\[\033[0m\]: \W \$ '
+
 export PATH="~/bin":$PATH
 
 export HISTCONTROL=ignoreboth
