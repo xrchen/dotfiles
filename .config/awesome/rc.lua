@@ -6,6 +6,7 @@ require("awful.rules")
 require("beautiful")
 -- Notification library
 require("naughty")
+local vicious = require("vicious")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -145,6 +146,28 @@ mytasklist.buttons = awful.util.table.join(
                                               if client.focus then client.focus:raise() end
                                           end))
 
+-- {{{ Vicious Widgets
+datewidget = widget({ type = "textbox" })
+vicious.register(datewidget, vicious.widgets.date, "%a %b %d, %X", 1)
+
+cpuwidget = widget({ type = "textbox" })
+cpuwidget.width, cpuwidget.align = 45, "right"
+vicious.register(cpuwidget, vicious.widgets.cpu, "C: $1%")
+
+memwidget = widget({ type = "textbox" })
+memwidget.width, memwidget.align = 70, "right"
+vicious.register(memwidget, vicious.widgets.mem, "M: $2MB", 13)
+
+thermalwidget = widget({ type = "textbox" })
+thermalwidget.width, thermalwidget.align = 35, "right"
+vicious.register(thermalwidget, vicious.widgets.thermal, "T: $1", 3, "thermal_zone0")
+
+batwidget = widget({ type = "textbox" })
+batwidget.width, batwidget.align = 40, "left"
+vicious.register(batwidget, vicious.widgets.bat, "B: $1$2", 67, "BAT0")
+
+-- }}}
+
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
@@ -172,10 +195,15 @@ for s = 1, screen.count() do
             mylauncher,
             mytaglist[s],
             mypromptbox[s],
+	    cpuwidget,
+	    memwidget,
+	    thermalwidget,
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
-        mytextclock,
+	datewidget,
+        -- mytextclock,
+	batwidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
