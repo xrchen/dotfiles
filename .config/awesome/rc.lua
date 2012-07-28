@@ -72,7 +72,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
+    tags[s] = awful.tag({ "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" }, s, layouts[1])
 end
 -- }}}
 
@@ -152,15 +152,15 @@ vicious.register(datewidget, vicious.widgets.date, "%a %b %d, %X", 1)
 
 cpuwidget = widget({ type = "textbox" })
 cpuwidget.width, cpuwidget.align = 45, "right"
-vicious.register(cpuwidget, vicious.widgets.cpu, "C: $1%")
+vicious.register(cpuwidget, vicious.widgets.cpu, "C: $1% ")
 
 memwidget = widget({ type = "textbox" })
 memwidget.width, memwidget.align = 70, "right"
-vicious.register(memwidget, vicious.widgets.mem, "M: $2MB", 13)
+vicious.register(memwidget, vicious.widgets.mem, "M: $2MB ", 13)
 
 thermalwidget = widget({ type = "textbox" })
 thermalwidget.width, thermalwidget.align = 35, "right"
-vicious.register(thermalwidget, vicious.widgets.thermal, "T: $1", 3, "thermal_zone0")
+vicious.register(thermalwidget, vicious.widgets.thermal, "T: $1 ", 3, "thermal_zone0")
 
 batwidget = widget({ type = "textbox" })
 batwidget.width, batwidget.align = 40, "left"
@@ -194,10 +194,10 @@ for s = 1, screen.count() do
         {
             mylauncher,
             mytaglist[s],
-            mypromptbox[s],
 	    cpuwidget,
 	    memwidget,
 	    thermalwidget,
+            mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
@@ -362,6 +362,14 @@ awful.rules.rules = {
     { rule = { class = "pinentry" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
+      properties = { floating = true } },
+    { rule = { class = "Skype" },
+      properties = { floating = true } },
+    { rule = { class = "Kopete" },
+      properties = { floating = true } },
+    { rule = { class = "Konsole" },
+      properties = { floating = false } },
+    { rule = { class = "VirtualBox" },
       properties = { floating = true } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
