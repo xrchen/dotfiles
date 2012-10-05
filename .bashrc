@@ -18,7 +18,7 @@ fi
 
 PS1='\[\033[1m\]\h\[\033[0m\]: \W \$ '
 
-export PATH="~/bin":$PATH
+export PATH="/home/xrchen/bin":$PATH
 
 export HISTCONTROL=ignoreboth
 export HISTSIZE=10000
